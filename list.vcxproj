@@ -126,6 +126,7 @@
     <ClInclude Include="CList.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CList.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
