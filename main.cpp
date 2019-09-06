@@ -24,5 +24,10 @@ int main()
 		std::cout << std::endl << it;
 	}
 
+	for (auto it = a.rbegin(); it != a.rend(); ++it)
+	{
+		std::cout << *it;
+	}
+
 	return 0;
 }
