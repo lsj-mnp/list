@@ -20,6 +20,45 @@ struct SNode
 class CList
 {
 public:
+	class CListBaseIterator
+	{
+	public:
+		CListBaseIterator(SNode* _NodePointer) : m_NodePointer{ _NodePointer } {};
+		virtual ~CListBaseIterator() {};
+
+		virtual CListBaseIterator& operator++() = 0;
+
+		virtual bool operator!=(const CListBaseIterator& B)
+		{
+			return (m_NodePointer != B.m_NodePointer) ? true : false;
+		}
+
+		virtual int& operator*()
+		{
+			assert(m_NodePointer);
+			return m_NodePointer->Value;
+		}
+
+	protected:
+		SNode* m_NodePointer{};
+	};
+
+	class CListIterator : public CListBaseIterator
+	{
+	public:
+		CListIterator(SNode* _NodePointer) : CListBaseIterator(_NodePointer) {};
+		~CListIterator() {};
+
+		CListIterator& operator++() override
+		{
+			m_NodePointer = m_NodePointer->Next;
+			return *this;
+		}
+	};
+
+	using iterator = CListIterator;
+
+public:
 	CList() {};
 	CList(std::initializer_list<int> IList)
 	{
@@ -235,6 +274,17 @@ public:
 
 			--m_Size;
 		}
+	}
+
+public:
+	iterator begin()
+	{
+		return iterator(m_Front);
+	}
+
+	iterator end()
+	{
+		return iterator(nullptr);
 	}
 
 private:

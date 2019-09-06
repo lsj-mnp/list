@@ -1,16 +1,28 @@
 #include "CList.h"
+#include <list>
 
 int main()
 {
-	CList a{ 4, 5, 6 };
+	using std::list;
 
-	a.PushBack(3);
-	a.PushBack(9);
-	a.PushBack(7);
+	list<int> b{ 2, 3, 4, 7 };
 
-	a.Erase(4);
+	for (auto it : b)
+	{
+		std::cout << it;
+	}
 
-	a.Display();
+	for (auto it = b.begin(); it != b.end(); ++it)
+	{
+		std::cout << *it;
+	}
+
+	CList a{3, 5, 6, 7};
+
+	for (auto it : a)
+	{
+		std::cout << std::endl << it;
+	}
 
 	return 0;
 }
